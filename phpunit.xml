@@ -1,0 +1,18 @@
+<phpunit backupGlobals="false"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+         stopOnError="true"
+         verbose="true">
+
+    <testsuites>
+        <testsuite name="TypeCheck">
+            <directory>./tests/Wookieb/TypeCheck</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="false">
+            <directory>src</directory>
+        </whitelist>
+    </filter>
+</phpunit>
