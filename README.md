@@ -1,5 +1,6 @@
 # Type check
 
+[![Build Status](https://travis-ci.org/wookieb/type-check.png?branch=master)](https://travis-ci.org/wookieb/type-check)
 Provide objects oriented and more abstract way to check the type of data.
 
 Note! This library it's not a replacement for functions is_* and other type check functions!
