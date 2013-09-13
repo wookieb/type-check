@@ -2,7 +2,6 @@
 
 namespace Wookieb\TypeCheck\Tests;
 
-use Wookieb\TypeCheck\MultipleTypesCheck;
 use Wookieb\TypeCheck\ObjectTypeCheck;
 use Wookieb\TypeCheck\SimpleTypeCheck;
 

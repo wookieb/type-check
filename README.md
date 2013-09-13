@@ -61,3 +61,53 @@ TypeCheck::booleans();
 TypeCheck::arrays();
 TypeCheck::resources();
 ```
+
+# Other type checks
+
+## TraversableOf
+Allows to check the type of traversable (arrays or instances of \Traversable interface) elements
+
+```php
+use Wookieb\TypeCheck\TraversableOf;
+use Wookieb\TypeCheck\TypeCheck;
+
+$check = new TraversableOf(TypeCheck::strings());
+$check->isValidType(array(1, 'foo', 3)); // false
+$check->isValidType(array('foo', 'bar', 'zee')); // true
+echo $check->getTypeDescription(); // traversable structures that contains strings
+```
+
+## CallbackTypeCheck
+Uses callback as validation function
+
+```php
+use Wookieb\TypeCheck\CallbackTypeCheck;
+
+$check = new CallbackTypeCheck(function ($value) {
+    return is_array($value) && reset($value) === 'foo';
+}, 'arrays with foo string');
+
+$check->isValidType(array('bar')); // false
+$check->isValidType(array('foo')); // true
+echo $check->getTypeDescription(); // arrays with foo string
+```
+
+## AllChecks
+Value must pass all defined type check
+
+```php
+use Wookieb\TypeCheck\TraversableOf;
+use Wookieb\TypeCheck\TypeCheck;
+use Wookieb\TypeCheck\AllChecks;
+
+// narrow the field of "traversable" data types to arrays
+$check = new AllChecks(TypeCheck::arrays(), new TraversableOf(TypeCheck::strings()));
+$check->isValidType(new ArrayIterator(array('foo', 'bar'))); // false
+$check->isValidType(array('foo', 'bar')); // true
+echo $check->getTypeDescription(); // arrays traversable structures that contains strings
+```
+
+# Changelog
+
+## 0.2
+* added AllChecks, CallbackTypeCheck, TraversableOf
